@@ -1,5 +1,7 @@
 /* ═══════════════════════════════════════════════════════
-   REALIZATIONS PAGE
+   REALIZATIONS PAGE — Specific styles only
+   Shared styles: page-hero, cta-section, stats-inline,
+   quote-card, what-changes are in shared.css
    ═══════════════════════════════════════════════════════ */
 
 /* ── Portfolio Grid ────────────────────────────────── */
@@ -37,7 +39,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.3));
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.4));
 }
 
 .project-card__capacity {
@@ -103,8 +105,7 @@
   display: flex;
   gap: var(--space-xl);
   margin-top: var(--space-lg);
-  padding-top: var(--space-md);
-  background-color: var(--color-surface-1);
+  background: linear-gradient(135deg, var(--color-surface-1), var(--color-surface-2));
   border-radius: var(--radius-md);
   padding: var(--space-md) var(--space-lg);
 }
@@ -129,121 +130,10 @@
   margin-top: 2px;
 }
 
-/* ── Stats Inline ──────────────────────────────────── */
-.stats-inline {
-  background-color: var(--color-background);
-}
-
-.stats-inline__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3xl);
-  padding: var(--space-3xl);
-  background-color: var(--color-surface-white);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-sm);
-}
-
-.stats-inline__item {
-  text-align: center;
-}
-
-.stats-inline__number {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: var(--text-h1);
-  font-weight: 700;
-  color: var(--color-primary);
-  line-height: 1.1;
-}
-
-.stats-inline__label {
-  display: block;
-  margin-top: var(--space-xs);
-  font-size: var(--text-small);
-  font-weight: 500;
-  color: var(--color-text-tertiary);
-}
-
-.stats-inline__divider {
-  width: 1px;
-  height: 48px;
-  background-color: var(--color-surface-3);
-}
-
-/* ── What Changes (reused) ─────────────────────────── */
-.what-changes__grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: var(--space-3xl);
-  align-items: center;
-}
-
-.what-changes__content h2 {
-  margin-top: var(--space-sm);
-}
-
-.what-changes__content p {
-  margin-top: var(--space-lg);
-  font-size: var(--text-body-lg);
-  line-height: 1.75;
-}
-
-.quote-card {
-  padding: var(--space-2xl);
-  border-radius: var(--radius-xl);
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  box-shadow: var(--glass-shadow);
-}
-
-.quote-card__icon {
-  font-size: 40px;
-  color: var(--color-secondary);
-  opacity: 0.6;
-  margin-bottom: var(--space-md);
-}
-
-.quote-card blockquote {
-  font-family: var(--font-heading);
-  font-size: var(--text-h3);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--color-text-primary);
-  font-style: italic;
-}
-
-.quote-card cite {
-  display: block;
-  margin-top: var(--space-lg);
-  font-size: var(--text-small);
-  font-weight: 600;
-  color: var(--color-text-tertiary);
-  font-style: normal;
-}
-
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {
   .portfolio-grid {
     grid-template-columns: 1fr;
-  }
-
-  .stats-inline__inner {
-    flex-direction: column;
-    gap: var(--space-xl);
-    padding: var(--space-2xl);
-  }
-
-  .stats-inline__divider {
-    width: 48px;
-    height: 1px;
-  }
-
-  .what-changes__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
   }
 
   .project-card__header {

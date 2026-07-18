@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════
-   CONTACT PAGE
+   CONTACT PAGE — Specific styles only
+   Shared styles: page-hero are in shared.css
    ═══════════════════════════════════════════════════════ */
 
 /* ── Contact Grid ──────────────────────────────────── */
@@ -49,11 +50,11 @@
 .form-group textarea {
   padding: 14px 16px;
   background-color: var(--color-surface-1);
-  border: none;
+  border: 2px solid transparent;
   border-radius: var(--radius-md);
   font-size: var(--text-body);
   color: var(--color-text-primary);
-  transition: background-color var(--duration-fast), box-shadow var(--duration-fast);
+  transition: all var(--duration-fast);
   outline: none;
 }
 
@@ -66,7 +67,8 @@
 .form-group select:focus,
 .form-group textarea:focus {
   background-color: var(--color-surface-white);
-  box-shadow: 0 0 0 2px var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 52, 102, 0.1);
 }
 
 .form-group select {
@@ -83,7 +85,8 @@
 }
 
 .input--error {
-  box-shadow: 0 0 0 2px #c0392b !important;
+  border-color: #c0392b !important;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1) !important;
 }
 
 .form-error {
@@ -117,6 +120,12 @@
   background-color: var(--color-surface-white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xs);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.contact-info-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .contact-info-card .material-symbols-outlined {
@@ -148,6 +157,12 @@
   padding: var(--space-lg);
   background-color: var(--color-surface-1);
   border-radius: var(--radius-lg);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.faq-card:hover {
+  background-color: var(--color-surface-white);
+  box-shadow: var(--shadow-sm);
 }
 
 .faq-card h4 {
@@ -183,9 +198,9 @@
   position: absolute;
   left: 0;
   top: 8px;
-  width: 5px;
-  height: 5px;
-  background-color: var(--color-secondary);
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-container));
   border-radius: 50%;
 }
 
