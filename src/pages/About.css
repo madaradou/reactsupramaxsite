@@ -1,12 +1,28 @@
 /* ═══════════════════════════════════════════════════════
-   ABOUT PAGE
+   ABOUT PAGE — Specific styles only
+   Shared styles: page-hero, cta-section, stats-inline,
+   quote-card, what-changes are in shared.css
    ═══════════════════════════════════════════════════════ */
 
 /* ── Vision Card ───────────────────────────────────── */
 .vision-card {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 60%, #1e5a9a 100%);
   border-radius: var(--radius-2xl);
   padding: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.vision-card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(252, 153, 16, 0.12), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .vision-card__items {
@@ -14,6 +30,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xl);
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .vision-card__number {
@@ -51,11 +69,29 @@
   border-radius: var(--radius-xl);
   padding: var(--space-2xl);
   transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.principle-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
 }
 
 .principle-card:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
+}
+
+.principle-card:hover::after {
+  opacity: 1;
 }
 
 .principle-card__icon {
@@ -64,10 +100,11 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
   color: var(--color-text-inverse);
   border-radius: var(--radius-md);
   margin-bottom: var(--space-lg);
+  box-shadow: 0 4px 12px rgba(0, 52, 102, 0.2);
 }
 
 .principle-card__icon .material-symbols-outlined {
@@ -108,6 +145,7 @@
 .value-card:hover {
   background-color: var(--color-surface-white);
   box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .value-card__icon {
@@ -116,10 +154,11 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  background-color: var(--color-secondary);
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-container));
   color: var(--color-primary);
   border-radius: var(--radius-md);
   margin-bottom: var(--space-md);
+  box-shadow: 0 4px 12px rgba(252, 153, 16, 0.2);
 }
 
 .value-card__icon .material-symbols-outlined {
@@ -158,36 +197,6 @@
   margin-top: var(--space-md);
   font-size: var(--text-body-lg);
   line-height: 1.75;
-}
-
-.promise-quote {
-  padding: var(--space-2xl);
-  border-radius: var(--radius-xl);
-}
-
-.promise-quote__icon {
-  font-size: 40px;
-  color: var(--color-secondary);
-  opacity: 0.6;
-  margin-bottom: var(--space-md);
-}
-
-.promise-quote blockquote {
-  font-family: var(--font-heading);
-  font-size: var(--text-h3);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--color-text-primary);
-  font-style: italic;
-}
-
-.promise-quote cite {
-  display: block;
-  margin-top: var(--space-lg);
-  font-size: var(--text-small);
-  font-weight: 600;
-  color: var(--color-text-tertiary);
-  font-style: normal;
 }
 
 /* ── Responsive ────────────────────────────────────── */

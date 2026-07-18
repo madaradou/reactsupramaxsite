@@ -270,29 +270,32 @@ p {
 }
 
 .btn--primary {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
   color: var(--color-text-inverse);
+  box-shadow: 0 4px 14px rgba(0, 52, 102, 0.25);
 }
 
 .btn--primary:hover {
-  background-color: var(--color-primary-container);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, var(--color-primary-container), var(--color-primary-light));
+  box-shadow: 0 6px 20px rgba(0, 52, 102, 0.35);
+  transform: translateY(-2px);
 }
 
 .btn--primary:active {
   transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 52, 102, 0.2);
 }
 
 .btn--secondary {
-  background-color: var(--color-secondary);
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-container));
   color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(252, 153, 16, 0.3);
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-secondary-container);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, var(--color-secondary-container), #f0c04a);
+  box-shadow: 0 6px 20px rgba(252, 153, 16, 0.4);
+  transform: translateY(-2px);
 }
 
 .btn--outline {
