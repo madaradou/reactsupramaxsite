@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 import './Header.css'
 
 const NAV_LINKS = [
@@ -57,6 +58,8 @@ export default function Header() {
           Demander un devis
         </Link>
 
+        <ThemeToggle />
+
         <button
           className="header__burger"
           onClick={() => setOpen(!open)}
@@ -83,6 +86,12 @@ export default function Header() {
           <Link to="/contact" className="btn btn--secondary mobile-nav__cta">
             Demander un devis
           </Link>
+          <div className="mobile-nav__theme">
+            <ThemeToggle />
+            <span className="mobile-nav__theme-label">
+              {document.documentElement.getAttribute('data-theme') === 'dark' ? 'Mode clair' : 'Mode sombre'}
+            </span>
+          </div>
         </nav>
       </div>
     </header>

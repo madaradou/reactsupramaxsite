@@ -164,6 +164,20 @@
   text-align: center;
 }
 
+.mobile-nav__theme {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.mobile-nav__theme-label {
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 900px) {
   .header__nav,
