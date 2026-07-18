@@ -117,7 +117,7 @@
 
 .footer__copyright {
   font-size: var(--text-xs);
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .footer__bottom-links {
@@ -127,12 +127,12 @@
 
 .footer__link--sm {
   font-size: var(--text-xs);
-  opacity: 0.5;
+  opacity: 0.75;
   transition: opacity var(--duration-fast);
 }
 
 .footer__link--sm:hover {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 /* ── Responsive ─────────────────────────────────────── */

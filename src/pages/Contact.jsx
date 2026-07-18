@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 import './Contact.css'
 
-const SERVICE_OPTIONS = [
-  'Audit & conception',
-  'Installation photovoltaïque',
-  'Stockage & continuité',
-  'Monitoring & maintenance',
-  'Mobilité & recharge',
-  'Optimisation énergétique',
-]
-
 export default function Contact() {
+  const { t } = useLanguage()
+
+  const SERVICE_OPTIONS = [
+    { value: 'audit', label: t('opt_audit') },
+    { value: 'install', label: t('opt_install') },
+    { value: 'storage', label: t('opt_storage') },
+    { value: 'monitoring', label: t('opt_monitoring') },
+    { value: 'mobility', label: t('opt_mobility') },
+    { value: 'optimization', label: t('opt_optimization') },
+  ]
+
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -25,12 +28,12 @@ export default function Contact() {
 
   const validate = () => {
     const errs = {}
-    if (!form.name.trim()) errs.name = 'Veuillez entrer votre nom'
-    if (!form.email.trim()) errs.email = 'Veuillez entrer votre email'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Email invalide'
-    if (!form.phone.trim()) errs.phone = 'Veuillez entrer votre téléphone'
-    if (!form.service) errs.service = 'Veuillez sélectionner un service'
-    if (!form.message.trim()) errs.message = 'Veuillez décrire votre projet'
+    if (!form.name.trim()) errs.name = t('err_name')
+    if (!form.email.trim()) errs.email = t('err_email')
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = t('err_email_invalid')
+    if (!form.phone.trim()) errs.phone = t('err_phone')
+    if (!form.service) errs.service = t('err_service')
+    if (!form.message.trim()) errs.message = t('err_message')
     return errs
   }
 
@@ -60,13 +63,12 @@ export default function Contact() {
         <div className="container" data-reveal>
           <div className="contact-success__inner">
             <span className="material-symbols-outlined contact-success__icon">check_circle</span>
-            <h2>Merci pour votre message</h2>
+            <h2>{t('contact_success_title')}</h2>
             <p>
-              Nous avons bien reçu votre demande. Notre équipe vous recontactera 
-              dans les plus brefs délais.
+              {t('contact_success_desc')}
             </p>
             <Link to="/" className="btn btn--primary" style={{ marginTop: 'var(--space-xl)' }}>
-              Retour à l'accueil
+              {t('contact_success_btn')}
             </Link>
           </div>
         </div>
@@ -80,26 +82,25 @@ export default function Contact() {
       <section className="page-hero">
         <div className="page-hero__bg" />
         <div className="page-hero__content container" data-reveal>
-          <span className="eyebrow">Contact</span>
+          <span className="eyebrow">{t('contact_eyebrow')}</span>
           <h1 className="page-hero__title">
-            Parlons de votre projet
+            {t('contact_hero_title')}
           </h1>
           <p className="page-hero__subtitle">
-            Chaque grande installation commence par une conversation. 
-            Partagez-nous votre vision, nous vous aiderons à la concrétiser.
+            {t('contact_hero_subtitle')}
           </p>
           <div className="page-hero__strengths" data-stagger>
             <div className="page-hero__strength">
               <span className="material-symbols-outlined">schedule</span>
-              <span>Réponse sous 24h</span>
+              <span>{t('contact_strength1')}</span>
             </div>
             <div className="page-hero__strength">
               <span className="material-symbols-outlined">forum</span>
-              <span>Échange structuré</span>
+              <span>{t('contact_strength2')}</span>
             </div>
             <div className="page-hero__strength">
               <span className="material-symbols-outlined">lock</span>
-              <span>Confidentialité garantie</span>
+              <span>{t('contact_strength3')}</span>
             </div>
           </div>
         </div>
@@ -111,33 +112,33 @@ export default function Contact() {
           <div className="contact-grid">
             {/* Form */}
             <div className="contact-form-wrap" data-reveal>
-              <h2>Demande de devis</h2>
+              <h2>{t('contact_form_title')}</h2>
               <p className="contact-form-wrap__desc">
-                Remplissez le formulaire ci-dessous et nous vous recontacterons rapidement.
+                {t('contact_form_desc')}
               </p>
 
               <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="name">Nom complet *</label>
+                    <label htmlFor="name">{t('contact_name')}</label>
                     <input
                       id="name"
                       type="text"
                       value={form.name}
                       onChange={handleChange('name')}
-                      placeholder="Votre nom"
+                      placeholder={t('contact_name_placeholder')}
                       className={errors.name ? 'input--error' : ''}
                     />
                     {errors.name && <span className="form-error">{errors.name}</span>}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="phone">Téléphone *</label>
+                    <label htmlFor="phone">{t('contact_phone')}</label>
                     <input
                       id="phone"
                       type="tel"
                       value={form.phone}
                       onChange={handleChange('phone')}
-                      placeholder="+216 XX XXX XXX"
+                      placeholder={t('contact_phone_placeholder')}
                       className={errors.phone ? 'input--error' : ''}
                     />
                     {errors.phone && <span className="form-error">{errors.phone}</span>}
@@ -146,52 +147,52 @@ export default function Contact() {
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="email">Email *</label>
+                    <label htmlFor="email">{t('contact_email')}</label>
                     <input
                       id="email"
                       type="email"
                       value={form.email}
                       onChange={handleChange('email')}
-                      placeholder="votre@email.com"
+                      placeholder={t('contact_email_placeholder')}
                       className={errors.email ? 'input--error' : ''}
                     />
                     {errors.email && <span className="form-error">{errors.email}</span>}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="city">Ville / Site</label>
+                    <label htmlFor="city">{t('contact_city')}</label>
                     <input
                       id="city"
                       type="text"
                       value={form.city}
                       onChange={handleChange('city')}
-                      placeholder="Ville ou adresse du site"
+                      placeholder={t('contact_city_placeholder')}
                     />
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="service">Type de service *</label>
+                  <label htmlFor="service">{t('contact_service')}</label>
                   <select
                     id="service"
                     value={form.service}
                     onChange={handleChange('service')}
                     className={errors.service ? 'input--error' : ''}
                   >
-                    <option value="">Sélectionnez un service</option>
+                    <option value="">{t('contact_service_select')}</option>
                     {SERVICE_OPTIONS.map((s) => (
-                      <option key={s} value={s}>{s}</option>
+                      <option key={s.value} value={s.value}>{s.label}</option>
                     ))}
                   </select>
                   {errors.service && <span className="form-error">{errors.service}</span>}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Décrivez votre projet *</label>
+                  <label htmlFor="message">{t('contact_message')}</label>
                   <textarea
                     id="message"
                     value={form.message}
                     onChange={handleChange('message')}
-                    placeholder="Décrivez votre site, vos objectifs, vos contraintes..."
+                    placeholder={t('contact_message_placeholder')}
                     rows={5}
                     className={errors.message ? 'input--error' : ''}
                   />
@@ -199,7 +200,7 @@ export default function Contact() {
                 </div>
 
                 <button type="submit" className="btn btn--primary btn--lg contact-form__submit">
-                  Envoyer la demande
+                  {t('contact_submit')}
                   <span className="material-symbols-outlined">send</span>
                 </button>
               </form>
@@ -211,21 +212,21 @@ export default function Contact() {
                 <div className="contact-info-card">
                   <span className="material-symbols-outlined">location_on</span>
                   <div>
-                    <h4>Adresse</h4>
-                    <p>Tunis, Tunisie</p>
+                    <h4>{t('contact_address')}</h4>
+                    <p>{t('contact_address_value')}</p>
                   </div>
                 </div>
                 <div className="contact-info-card">
                   <span className="material-symbols-outlined">call</span>
                   <div>
-                    <h4>Téléphone</h4>
+                    <h4>{t('contact_phone_label')}</h4>
                     <p>+216 71 000 000</p>
                   </div>
                 </div>
                 <div className="contact-info-card">
                   <span className="material-symbols-outlined">mail</span>
                   <div>
-                    <h4>Email</h4>
+                    <h4>{t('contact_email_label')}</h4>
                     <p>contact@supramax.energy</p>
                   </div>
                 </div>
@@ -235,35 +236,35 @@ export default function Contact() {
                 <div className="faq-card">
                   <h4>
                     <span className="material-symbols-outlined">help</span>
-                    Ce que nous vous demanderons
+                    {t('contact_faq1_title')}
                   </h4>
                   <ul>
-                    <li>Localisation et orientation du toit</li>
-                    <li>Consommation électrique actuelle</li>
-                    <li>Objectifs (réduction, autonomie, etc.)</li>
-                    <li>Contraintes techniques ou architecturales</li>
+                    <li>{t('contact_faq1_1')}</li>
+                    <li>{t('contact_faq1_2')}</li>
+                    <li>{t('contact_faq1_3')}</li>
+                    <li>{t('contact_faq1_4')}</li>
                   </ul>
                 </div>
                 <div className="faq-card">
                   <h4>
                     <span className="material-symbols-outlined"> Assignment</span>
-                    Ce que vous recevrez
+                    {t('contact_faq2_title')}
                   </h4>
                   <ul>
-                    <li>Étude de faisabilité complète</li>
-                    <li>Dimensionnement optimal</li>
-                    <li>Prévision de rendement</li>
-                    <li>Estimation financière détaillée</li>
+                    <li>{t('contact_faq2_1')}</li>
+                    <li>{t('contact_faq2_2')}</li>
+                    <li>{t('contact_faq2_3')}</li>
+                    <li>{t('contact_faq2_4')}</li>
                   </ul>
                 </div>
               </div>
 
               <a href="tel:+21671000000" className="btn btn--secondary contact-sidebar__cta">
                 <span className="material-symbols-outlined">call</span>
-                Appelez-nous directement
+                {t('contact_call_btn')}
               </a>
               <Link to="/services" className="btn btn--ghost contact-sidebar__link">
-                Voir nos services
+                {t('contact_services_link')}
                 <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
             </div>

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { LanguageProvider } from './i18n/LanguageContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollReveal from './components/ScrollReveal'
@@ -20,19 +21,21 @@ function ScrollToTop() {
 export default function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <ScrollReveal />
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/a-propos" element={<About />} />
-          <Route path="/realisations" element={<Realizations />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
-      <Footer />
+      <LanguageProvider>
+        <ScrollToTop />
+        <ScrollReveal />
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/a-propos" element={<About />} />
+            <Route path="/realisations" element={<Realizations />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </LanguageProvider>
     </BrowserRouter>
   )
 }

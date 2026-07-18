@@ -1,30 +1,38 @@
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 import './Home.css'
 
 export default function Home() {
+  const { t } = useLanguage()
+
   return (
     <>
       {/* ── Hero ─────────────────────────────────────── */}
       <section className="hero">
         <div className="hero__bg">
-          <div className="hero__gradient" />
+          <img
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1600&q=80"
+            alt=""
+            className="hero__bg-img"
+            loading="eager"
+          />
+          <div className="hero__bg-overlay" />
         </div>
         <div className="hero__content container" data-reveal>
-          <span className="eyebrow">Excellence énergétique</span>
+          <span className="eyebrow">{t('home_eyebrow')}</span>
           <h1 className="hero__title">
-            Solutions photovoltaïques premium pour le futur
+            {t('home_hero_title')}
           </h1>
           <p className="hero__subtitle">
-            SupraMax Energy conçoit et déploie des installations solaires d'exception 
-            pour le résidentiel, le tertiaire et l'industriel en Tunisie.
+            {t('home_hero_subtitle')}
           </p>
           <div className="hero__actions">
             <Link to="/contact" className="btn btn--secondary btn--lg">
-              Demander un devis
+              {t('home_hero_cta')}
               <span className="material-symbols-outlined">arrow_forward</span>
             </Link>
             <Link to="/services" className="btn btn--ghost btn--lg">
-              Découvrir nos services
+              {t('home_hero_cta2')}
             </Link>
           </div>
         </div>
@@ -35,19 +43,19 @@ export default function Home() {
         <div className="container--wide" data-stagger>
           <div className="stats-bar__item">
             <span className="stats-bar__number">10 MW</span>
-            <span className="stats-bar__label">Installés</span>
+            <span className="stats-bar__label">{t('stat_installed')}</span>
           </div>
           <div className="stats-bar__item">
             <span className="stats-bar__number">150+</span>
-            <span className="stats-bar__label">Projets réalisés</span>
+            <span className="stats-bar__label">{t('stat_projects')}</span>
           </div>
           <div className="stats-bar__item">
             <span className="stats-bar__number">24h</span>
-            <span className="stats-bar__label">Temps de réponse</span>
+            <span className="stats-bar__label">{t('stat_response')}</span>
           </div>
           <div className="stats-bar__item">
             <span className="stats-bar__number">25 ans</span>
-            <span className="stats-bar__label">Vision long terme</span>
+            <span className="stats-bar__label">{t('stat_vision')}</span>
           </div>
         </div>
       </section>
@@ -56,11 +64,10 @@ export default function Home() {
       <section className="section section--lg">
         <div className="container">
           <div className="section-header" data-reveal>
-            <span className="eyebrow">Ingénierie de précision</span>
-            <h2>L'élégance au service de la performance</h2>
+            <span className="eyebrow">{t('home_benefits_eyebrow')}</span>
+            <h2>{t('home_benefits_title')}</h2>
             <p>
-              Chaque projet est conçu avec une rigueur d'ingénieur et une élégance d'architecte. 
-              Nous croyons que la qualité se voit et se ressent.
+              {t('home_benefits_desc')}
             </p>
           </div>
 
@@ -69,30 +76,27 @@ export default function Home() {
               <div className="benefit-card__icon">
                 <span className="material-symbols-outlined">auto_awesome</span>
               </div>
-              <h3>Élégance technique</h3>
+              <h3>{t('benefit1_title')}</h3>
               <p>
-                Des installations pensées pour s'intégrer harmonieusement à votre architecture, 
-                avec une attention minutieuse aux détails.
+                {t('benefit1_desc')}
               </p>
             </div>
             <div className="benefit-card">
               <div className="benefit-card__icon">
                 <span className="material-symbols-outlined">monitoring</span>
               </div>
-              <h3>Monitoring intelligent</h3>
+              <h3>{t('benefit2_title')}</h3>
               <p>
-                Supervision en temps réel de votre production avec des alertes prédictives 
-                et un tableau de bord intuitif.
+                {t('benefit2_desc')}
               </p>
             </div>
             <div className="benefit-card">
               <div className="benefit-card__icon">
                 <span className="material-symbols-outlined">verified</span>
               </div>
-              <h3>Qualité assurée</h3>
+              <h3>{t('benefit3_title')}</h3>
               <p>
-                Composants premium certifiés, garantie étendue et maintenance préventive 
-                pour une tranquillité totale.
+                {t('benefit3_desc')}
               </p>
             </div>
           </div>
@@ -103,55 +107,67 @@ export default function Home() {
       <section className="section services-overview">
         <div className="container">
           <div className="section-header" data-reveal>
-            <span className="eyebrow">Nos expertises</span>
-            <h2>Trois segments, un standard premium</h2>
+            <span className="eyebrow">{t('home_services_eyebrow')}</span>
+            <h2>{t('home_services_title')}</h2>
           </div>
 
           <div className="services-grid" data-stagger>
             <div className="service-card">
-              <div className="service-card__number">01</div>
-              <div className="service-card__icon">
-                <span className="material-symbols-outlined">home</span>
+              <div className="service-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&q=80"
+                  alt="Panneaux solaires sur toiture résidentielle"
+                  className="service-card__img"
+                  loading="lazy"
+                />
               </div>
-              <h3>Résidentiel premium</h3>
+              <div className="service-card__number">01</div>
+              <h3>{t('service_residential')}</h3>
               <p>
-                Solutions solaires sur mesure pour villas et résidences. 
-                Esthétique irréprochable, performance maximale.
+                {t('service_residential_desc')}
               </p>
               <Link to="/services" className="service-card__link">
-                En savoir plus
+                {t('learn_more')}
                 <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
             </div>
 
             <div className="service-card service-card--featured">
-              <div className="service-card__number">02</div>
-              <div className="service-card__icon">
-                <span className="material-symbols-outlined">apartment</span>
+              <div className="service-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80"
+                  alt="Bureau moderne avec installation solaire"
+                  className="service-card__img"
+                  loading="lazy"
+                />
               </div>
-              <h3>Tertiaire & Entreprises</h3>
+              <div className="service-card__number">02</div>
+              <h3>{t('service_tertiary')}</h3>
               <p>
-                Installations pour bureaux, commerces et institutions. 
-                Réduction des coûts et valorisation de votre image.
+                {t('service_tertiary_desc')}
               </p>
               <Link to="/services" className="service-card__link">
-                En savoir plus
+                {t('learn_more')}
                 <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
             </div>
 
             <div className="service-card">
-              <div className="service-card__number">03</div>
-              <div className="service-card__icon">
-                <span className="material-symbols-outlined">factory</span>
+              <div className="service-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1513828583688-c52646db42da?w=600&q=80"
+                  alt="Site industriel avec panneaux solaires"
+                  className="service-card__img"
+                  loading="lazy"
+                />
               </div>
-              <h3>Sites industriels</h3>
+              <div className="service-card__number">03</div>
+              <h3>{t('service_industrial')}</h3>
               <p>
-                Projets à grande échelle pour sites industriels et logistiques. 
-                Robustesse, continuité et supervision 24/7.
+                {t('service_industrial_desc')}
               </p>
               <Link to="/services" className="service-card__link">
-                En savoir plus
+                {t('learn_more')}
                 <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
             </div>
@@ -164,23 +180,19 @@ export default function Home() {
         <div className="container">
           <div className="what-changes__grid">
             <div className="what-changes__content" data-reveal>
-              <span className="eyebrow">Ce qui change avec nous</span>
+              <span className="eyebrow">{t('home_what_title')}</span>
               <h2>
-                Vous ne recevez pas juste des panneaux. 
-                Vous recevez une solution complète.
+                {t('home_what_heading')}
               </h2>
               <p>
-                De l'audit initial à la maintenance continue, chaque étape est pensée 
-                pour vous apporter sérénité et performance. Nous ne installons pas 
-                du solaire — nous concevons votre autonomie énergétique.
+                {t('home_what_desc')}
               </p>
             </div>
 
             <div className="quote-card card--glass" data-reveal="right">
               <span className="material-symbols-outlined quote-card__icon">format_quote</span>
               <blockquote>
-                « Un projet réussi est celui où le client ne pense plus à son installation — 
-                elle fonctionne, elle performe, elle dure. »
+                {t('home_quote')}
               </blockquote>
               <cite>— SupraMax Energy</cite>
             </div>
@@ -192,13 +204,12 @@ export default function Home() {
       <section className="cta-section">
         <div className="container" data-reveal>
           <div className="cta-section__inner">
-            <h2>Passez au niveau supérieur</h2>
+            <h2>{t('home_cta_title')}</h2>
             <p>
-              Upgradez votre site avec une installation photovoltaïque premium. 
-              Contactez-nous pour une étude personnalisée.
+              {t('home_cta_desc')}
             </p>
             <Link to="/contact" className="btn btn--secondary btn--lg">
-              Upgradez votre site
+              {t('home_cta_btn')}
               <span className="material-symbols-outlined">arrow_forward</span>
             </Link>
           </div>
