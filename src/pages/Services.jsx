@@ -1,77 +1,91 @@
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 import './Services.css'
 
-const SERVICES = [
-  {
-    icon: 'science',
-    title: 'Audit & Conception',
-    desc: 'Étude technique complète, prévision de rendement et dimensionnement optimal de votre installation.',
-    details: ['Étude de faisabilité', 'Prévision de rendement', 'Dimensionnement optimal'],
-  },
-  {
-    icon: 'solar_power',
-    title: 'Installation photovoltaïque',
-    desc: 'Installation résidentielle, ombrières et ground-mounted avec une exécution premium.',
-    details: ['Résidentiel premium', 'Ombrières photovoltaïques', 'Ground-mounted'],
-  },
-  {
-    icon: 'battery_charging_full',
-    title: 'Stockage & Continuité',
-    desc: "Systèmes de batterie pour l'autonomie et la résilience énergétique de vos sites.",
-    details: ['Batteries lithium', 'Autonomie renforcée', 'Gestion intelligente'],
-  },
-  {
-    icon: 'dashboard',
-    title: 'Monitoring & Maintenance',
-    desc: 'Supervision en temps réel et support premium pour garantir la performance continue.',
-    details: ['Supervision 24/7', 'Maintenance préventive', 'Support premium'],
-  },
-  {
-    icon: 'ev_station',
-    title: 'Mobilité & Recharge',
-    desc: 'Bornes AC et DC pilotées pour anticiper la mobilité électrique.',
-    details: ['Bornes AC/DC', 'Pilotage intelligent', 'Infrastructures'],
-  },
-  {
-    icon: 'tune',
-    title: 'Optimisation Énergétique',
-    desc: 'Utilisation intelligente des données pour maximiser chaque kilowatt-heure.',
-    details: ['Gestion intelligente', 'Analyse de données', 'Optimisation continue'],
-  },
-]
-
-const STEPS = [
-  { num: '01', title: 'Analyse', desc: 'Compréhension complète de vos besoins et de votre site.' },
-  { num: '02', title: 'Conception', desc: 'Dimensionnement optimal et choix des composants premium.' },
-  { num: '03', title: 'Déploiement', desc: 'Installation soignée avec respect des normes les plus strictes.' },
-  { num: '04', title: 'Suivi', desc: 'Monitoring continu et maintenance pour une performance durable.' },
-]
-
 export default function Services() {
+  const { t } = useLanguage()
+
+  const SERVICES = [
+    {
+      icon: 'science',
+      title: t('service1_title'),
+      desc: t('service1_desc'),
+      details: [t('service1_d1'), t('service1_d2'), t('service1_d3')],
+      img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
+      imgAlt: 'Ingénieur analysant des données de performance solaire',
+    },
+    {
+      icon: 'solar_power',
+      title: t('service2_title'),
+      desc: t('service2_desc'),
+      details: [t('service2_d1'), t('service2_d2'), t('service2_d3')],
+      img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80',
+      imgAlt: 'Champ de panneaux solaires photovoltaïques',
+    },
+    {
+      icon: 'battery_charging_full',
+      title: t('service3_title'),
+      desc: t('service3_desc'),
+      details: [t('service3_d1'), t('service3_d2'), t('service3_d3')],
+      img: 'https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=600&q=80',
+      imgAlt: 'Système de stockage batterie pour énergie solaire',
+    },
+    {
+      icon: 'dashboard',
+      title: t('service4_title'),
+      desc: t('service4_desc'),
+      details: [t('service4_d1'), t('service4_d2'), t('service4_d3')],
+      img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+      imgAlt: 'Tableau de bord de supervision énergétique',
+    },
+    {
+      icon: 'ev_station',
+      title: t('service5_title'),
+      desc: t('service5_desc'),
+      details: [t('service5_d1'), t('service5_d2'), t('service5_d3')],
+      img: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80',
+      imgAlt: 'Borne de recharge électrique pour véhicule',
+    },
+    {
+      icon: 'tune',
+      title: t('service6_title'),
+      desc: t('service6_desc'),
+      details: [t('service6_d1'), t('service6_d2'), t('service6_d3')],
+      img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+      imgAlt: 'Analyse de données énergétiques sur écran',
+    },
+  ]
+
+  const STEPS = [
+    { num: '01', title: t('step1_title'), desc: t('step1_desc') },
+    { num: '02', title: t('step2_title'), desc: t('step2_desc') },
+    { num: '03', title: t('step3_title'), desc: t('step3_desc') },
+    { num: '04', title: t('step4_title'), desc: t('step4_desc') },
+  ]
+
   return (
     <>
       {/* ── Hero ─────────────────────────────────────── */}
       <section className="page-hero">
         <div className="page-hero__bg" />
         <div className="page-hero__content container" data-reveal>
-          <span className="eyebrow">Services signature</span>
-          <h1 className="page-hero__title">L'excellence à chaque étape</h1>
+          <span className="eyebrow">{t('services_eyebrow')}</span>
+          <h1 className="page-hero__title">{t('services_hero_title')}</h1>
           <p className="page-hero__subtitle">
-            De l'audit initial au suivi continu, nous orchestrons chaque dimension 
-            de votre projet photovoltaïque avec rigueur et élégance.
+            {t('services_hero_subtitle')}
           </p>
           <div className="page-hero__strengths" data-stagger>
             <div className="page-hero__strength">
               <span className="material-symbols-outlined">precision_manufacturing</span>
-              <span>Ingénierie de précision</span>
+              <span>{t('services_strength1')}</span>
             </div>
             <div className="page-hero__strength">
               <span className="material-symbols-outlined">workspace_premium</span>
-              <span>Composants premium</span>
+              <span>{t('services_strength2')}</span>
             </div>
             <div className="page-hero__strength">
               <span className="material-symbols-outlined">support_agent</span>
-              <span>Support dédié</span>
+              <span>{t('services_strength3')}</span>
             </div>
           </div>
         </div>
@@ -81,30 +95,40 @@ export default function Services() {
       <section className="section section--lg">
         <div className="container">
           <div className="section-header" data-reveal>
-            <span className="eyebrow">Nos services</span>
-            <h2>Une offre complète et intégrée</h2>
+            <span className="eyebrow">{t('services_section_eyebrow')}</span>
+            <h2>{t('services_section_title')}</h2>
             <p>
-              Chaque service est conçu pour s'intégrer dans un écosystème cohérent, 
-              maximisant la valeur de votre investissement.
+              {t('services_section_desc')}
             </p>
           </div>
 
           <div className="services-detail-grid" data-stagger>
             {SERVICES.map((s, i) => (
               <div className="service-detail-card" key={i}>
-                <div className="service-detail-card__icon">
-                  <span className="material-symbols-outlined">{s.icon}</span>
+                <div className="service-detail-card__img-wrap">
+                  <img
+                    src={s.img}
+                    alt={s.imgAlt}
+                    className="service-detail-card__img"
+                    loading="lazy"
+                  />
+                  <div className="service-detail-card__img-overlay" />
+                  <div className="service-detail-card__icon">
+                    <span className="material-symbols-outlined">{s.icon}</span>
+                  </div>
                 </div>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-                <ul className="service-detail-card__list">
-                  {s.details.map((d, j) => (
-                    <li key={j}>
-                      <span className="material-symbols-outlined">check_circle</span>
-                      {d}
-                    </li>
-                  ))}
-                </ul>
+                <div className="service-detail-card__body">
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                  <ul className="service-detail-card__list">
+                    {s.details.map((d, j) => (
+                      <li key={j}>
+                        <span className="material-symbols-outlined">check_circle</span>
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
@@ -115,8 +139,8 @@ export default function Services() {
       <section className="section timeline-section">
         <div className="container">
           <div className="section-header" data-reveal>
-            <span className="eyebrow">Notre méthode</span>
-            <h2>4 étapes vers votre autonomie</h2>
+            <span className="eyebrow">{t('timeline_eyebrow')}</span>
+            <h2>{t('timeline_title')}</h2>
           </div>
 
           <div className="timeline" data-stagger>
@@ -142,17 +166,17 @@ export default function Services() {
           <div className="stats-inline__inner">
             <div className="stats-inline__item">
               <span className="stats-inline__number">99.8%</span>
-              <span className="stats-inline__label">Disponibilité garantie</span>
+              <span className="stats-inline__label">{t('stat_availability')}</span>
             </div>
             <div className="stats-inline__divider" />
             <div className="stats-inline__item">
               <span className="stats-inline__number">24/7</span>
-              <span className="stats-inline__label">Supervision continue</span>
+              <span className="stats-inline__label">{t('stat_supervision')}</span>
             </div>
             <div className="stats-inline__divider" />
             <div className="stats-inline__item">
               <span className="stats-inline__number">25 ans</span>
-              <span className="stats-inline__label">Garantie performance</span>
+              <span className="stats-inline__label">{t('stat_warranty')}</span>
             </div>
           </div>
         </div>
@@ -162,13 +186,12 @@ export default function Services() {
       <section className="cta-section">
         <div className="container" data-reveal>
           <div className="cta-section__inner">
-            <h2>Prêt à démarrer votre projet ?</h2>
+            <h2>{t('services_cta_title')}</h2>
             <p>
-              Contactez-nous pour une étude personnalisée et découvrez 
-              ce que l'ingénierie photovoltaïque premium peut apporter à votre site.
+              {t('services_cta_desc')}
             </p>
             <Link to="/contact" className="btn btn--secondary btn--lg">
-              Demander un devis
+              {t('services_cta_btn')}
               <span className="material-symbols-outlined">arrow_forward</span>
             </Link>
           </div>

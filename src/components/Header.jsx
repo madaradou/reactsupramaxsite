@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
+import LanguageSelector from './LanguageSelector'
+import { useLanguage } from '../i18n/LanguageContext'
 import './Header.css'
-
-const NAV_LINKS = [
-  { to: '/', label: 'Accueil' },
-  { to: '/services', label: 'Services' },
-  { to: '/a-propos', label: 'À propos' },
-  { to: '/realisations', label: 'Réalisations' },
-  { to: '/contact', label: 'Contact' },
-]
 
 export default function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const { t } = useLanguage()
+
+  const NAV_LINKS = [
+    { to: '/', label: t('nav_home') },
+    { to: '/services', label: t('nav_services') },
+    { to: '/a-propos', label: t('nav_about') },
+    { to: '/realisations', label: t('nav_realizations') },
+    { to: '/contact', label: t('nav_contact') },
+  ]
 
   useEffect(() => {
     setOpen(false)
@@ -38,7 +41,7 @@ export default function Header() {
           <span className="header__logo-mark">SM</span>
           <span className="header__logo-text">
             <span className="header__company-name">SupraMax Energy</span>
-            <span className="header__tagline">Ingénierie photovoltaïque premium</span>
+            <span className="header__tagline">{t('tagline')}</span>
           </span>
         </Link>
 
@@ -55,10 +58,11 @@ export default function Header() {
         </nav>
 
         <Link to="/contact" className="btn btn--secondary header__cta">
-          Demander un devis
+          {t('cta_quote')}
         </Link>
 
         <ThemeToggle />
+        <LanguageSelector />
 
         <button
           className="header__burger"
@@ -84,7 +88,7 @@ export default function Header() {
             </Link>
           ))}
           <Link to="/contact" className="btn btn--secondary mobile-nav__cta">
-            Demander un devis
+            {t('cta_quote')}
           </Link>
           <div className="mobile-nav__theme">
             <ThemeToggle />

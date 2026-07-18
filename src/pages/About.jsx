@@ -1,20 +1,22 @@
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 import './About.css'
 
 export default function About() {
+  const { t } = useLanguage()
+
   return (
     <>
       {/* ── Hero ─────────────────────────────────────── */}
       <section className="page-hero">
         <div className="page-hero__bg" />
         <div className="page-hero__content container" data-reveal>
-          <span className="eyebrow">Notre signature</span>
+          <span className="eyebrow">{t('about_eyebrow')}</span>
           <h1 className="page-hero__title">
-            L'ingénierie au service de votre avenir énergétique
+            {t('about_hero_title')}
           </h1>
           <p className="page-hero__subtitle">
-            Nous combinons la rigueur de l'ingénierie avec l'élégance de l'exécution 
-            pour des installations qui transcendent l'standard.
+            {t('about_hero_subtitle')}
           </p>
         </div>
       </section>
@@ -26,15 +28,15 @@ export default function About() {
             <div className="vision-card__items" data-stagger>
               <div className="vision-card__item">
                 <span className="vision-card__number">15+</span>
-                <span className="vision-card__label">Années d'expérience</span>
+                <span className="vision-card__label">{t('about_exp')}</span>
               </div>
               <div className="vision-card__item">
                 <span className="vision-card__number">3</span>
-                <span className="vision-card__label">Segments d'expertise</span>
+                <span className="vision-card__label">{t('about_segments')}</span>
               </div>
               <div className="vision-card__item">
                 <span className="vision-card__number">1</span>
-                <span className="vision-card__label">Standard premium</span>
+                <span className="vision-card__label">{t('about_premium')}</span>
               </div>
             </div>
           </div>
@@ -45,11 +47,10 @@ export default function About() {
       <section className="section positioning">
         <div className="container">
           <div className="section-header" data-reveal>
-            <span className="eyebrow">Notre positionnement</span>
-            <h2>Entre rigueur d'ingénierie et élégance d'exécution</h2>
+            <span className="eyebrow">{t('about_position_eyebrow')}</span>
+            <h2>{t('about_position_title')}</h2>
             <p>
-              Nous occupons un espace unique : la intersection de la précision technique 
-              et du souci du détail esthétique. Trois principes guident chacune de nos décisions.
+              {t('about_position_desc')}
             </p>
           </div>
 
@@ -58,10 +59,9 @@ export default function About() {
               <div className="principle-card__icon">
                 <span className="material-symbols-outlined">psychology</span>
               </div>
-              <h3>Décisions fondées</h3>
+              <h3>{t('principle1_title')}</h3>
               <p>
-                Chaque recommandation est appuyée par des données techniques, 
-                des simulations de rendement et une analyse rigoureuse de votre site.
+                {t('principle1_desc')}
               </p>
             </div>
 
@@ -69,10 +69,9 @@ export default function About() {
               <div className="principle-card__icon">
                 <span className="material-symbols-outlined">handshake</span>
               </div>
-              <h3>Relation de confiance</h3>
+              <h3>{t('principle2_title')}</h3>
               <p>
-                Nous construisons des partenariats durables, pas des transactions. 
-                Transparence totale sur les choix techniques et financiers.
+                {t('principle2_desc')}
               </p>
             </div>
 
@@ -80,10 +79,9 @@ export default function About() {
               <div className="principle-card__icon">
                 <span className="material-symbols-outlined">diamond</span>
               </div>
-              <h3>Finition premium</h3>
+              <h3>{t('principle3_title')}</h3>
               <p>
-                La qualité se voit dans les détails : câblage impeccable, intégration 
-                architecturale soignée, documentation complète.
+                {t('principle3_desc')}
               </p>
             </div>
           </div>
@@ -94,8 +92,8 @@ export default function About() {
       <section className="section values-section">
         <div className="container">
           <div className="section-header" data-reveal>
-            <span className="eyebrow">Nos valeurs</span>
-            <h2>Ce qui nous définit</h2>
+            <span className="eyebrow">{t('about_values_eyebrow')}</span>
+            <h2>{t('about_values_title')}</h2>
           </div>
 
           <div className="values-grid" data-stagger>
@@ -103,10 +101,9 @@ export default function About() {
               <div className="value-card__icon">
                 <span className="material-symbols-outlined">lightbulb</span>
               </div>
-              <h3>Innovation utile</h3>
+              <h3>{t('value1_title')}</h3>
               <p>
-                Nous adoptons les technologies les plus avancées quand elles apportent 
-                une valeur réelle. Pas d'innovation pour l'innovation.
+                {t('value1_desc')}
               </p>
             </div>
 
@@ -114,10 +111,9 @@ export default function About() {
               <div className="value-card__icon">
                 <span className="material-symbols-outlined">fact_check</span>
               </div>
-              <h3>Qualité vérifiable</h3>
+              <h3>{t('value2_title')}</h3>
               <p>
-                Nos engagements sont mesurables. Performance garantie, 
-                disponibilité documentée, résultats transparents.
+                {t('value2_desc')}
               </p>
             </div>
 
@@ -125,10 +121,9 @@ export default function About() {
               <div className="value-card__icon">
                 <span className="material-symbols-outlined">groups</span>
               </div>
-              <h3>Sprit de partenariat</h3>
+              <h3>{t('value3_title')}</h3>
               <p>
-                Votre succès est notre succès. Nous investissons dans la relation 
-                long terme et l'accompagnement continu.
+                {t('value3_desc')}
               </p>
             </div>
           </div>
@@ -140,18 +135,15 @@ export default function About() {
         <div className="container">
           <div className="promise-grid" data-reveal>
             <div className="promise-content">
-              <span className="eyebrow">Notre promesse</span>
+              <span className="eyebrow">{t('about_promise_eyebrow')}</span>
               <h2>
-                Vous aider à décider avec sérénité
+                {t('about_promise_title')}
               </h2>
               <p>
-                Un projet photovoltaïque est un investissement à long terme. 
-                Notre rôle est de vous éclairer, pas de vous vendre. Nous posons 
-                les questions que d'autres ne posent pas, pour que votre décision 
-                soit éclairée et durable.
+                {t('about_promise_desc')}
               </p>
               <Link to="/contact" className="btn btn--primary btn--lg" style={{ marginTop: 'var(--space-xl)' }}>
-                Parlons de votre projet
+                {t('about_promise_btn')}
                 <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
             </div>
@@ -159,9 +151,7 @@ export default function About() {
             <div className="promise-quote card--glass">
               <span className="material-symbols-outlined promise-quote__icon">format_quote</span>
               <blockquote>
-                « Les projets qui réussissent sont ceux où chaque partie prenante 
-                a compris, adhéré et contribué. La technique est notre métier, 
-                la confiance est notre fondation. »
+                {t('about_quote')}
               </blockquote>
               <cite>— SupraMax Energy</cite>
             </div>
@@ -173,13 +163,12 @@ export default function About() {
       <section className="cta-section">
         <div className="container" data-reveal>
           <div className="cta-section__inner">
-            <h2>Rencontrons-nous</h2>
+            <h2>{t('about_cta_title')}</h2>
             <p>
-              Échangeons sur votre projet et explorez ensemble les possibilités 
-              que l'énergie solaire peut offrir à votre site.
+              {t('about_cta_desc')}
             </p>
             <Link to="/contact" className="btn btn--secondary btn--lg">
-              Prendre rendez-vous
+              {t('about_cta_btn')}
               <span className="material-symbols-outlined">arrow_forward</span>
             </Link>
           </div>
