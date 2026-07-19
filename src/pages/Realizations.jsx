@@ -164,13 +164,12 @@ export default function Realizations() {
               </p>
             </div>
 
-            <div className="quote-card card--glass" data-reveal="right">
-              <span className="material-symbols-outlined quote-card__icon">format_quote</span>
-              <blockquote>
-                {t('real_quote')}
-              </blockquote>
-              <cite>— SupraMax Energy</cite>
-            </div>
+<div className="quote-card card--glass" data-reveal="right">
+  <blockquote>
+    {t('real_quote')}
+  </blockquote>
+  <cite>— SupraMax Energy</cite>
+</div>
           </div>
         </div>
       </section>

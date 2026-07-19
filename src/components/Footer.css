@@ -24,17 +24,10 @@
   gap: var(--space-sm);
 }
 
-.footer__logo-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.footer__logo-img {
   width: 40px;
   height: 40px;
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1rem;
+  object-fit: contain;
   border-radius: var(--radius-md);
 }
 
