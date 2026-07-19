@@ -148,13 +148,12 @@ export default function About() {
               </Link>
             </div>
 
-            <div className="promise-quote card--glass">
-              <span className="material-symbols-outlined promise-quote__icon">format_quote</span>
-              <blockquote>
-                {t('about_quote')}
-              </blockquote>
-              <cite>— SupraMax Energy</cite>
-            </div>
+<div className="quote-card card--glass">
+  <blockquote>
+    {t('about_quote')}
+  </blockquote>
+  <cite>— SupraMax Energy</cite>
+</div>
           </div>
         </div>
       </section>

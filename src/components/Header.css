@@ -32,19 +32,11 @@
   gap: var(--space-sm);
 }
 
-.header__logo-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.header__logo-img {
   width: 42px;
   height: 42px;
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.1rem;
+  object-fit: contain;
   border-radius: var(--radius-md);
-  letter-spacing: 0.02em;
 }
 
 .header__logo-text {

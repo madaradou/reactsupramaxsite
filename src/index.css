@@ -19,7 +19,7 @@
   --color-tertiary-container: #dbe7d1;
 
   /* Colors — Surface */
-  --color-background: #fcf9f8;
+  --color-background: #f0ebe7;
   --color-surface-1: #f6f3f2;
   --color-surface-2: #f0eded;
   --color-surface-3: #e4e2e1;
@@ -271,31 +271,31 @@ p {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
-  color: var(--color-text-inverse);
-  box-shadow: 0 4px 14px rgba(0, 52, 102, 0.25);
+  background: linear-gradient(135deg, #E54E21, #d4431a);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(229, 78, 33, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .btn--primary:hover {
-  background: linear-gradient(135deg, var(--color-primary-container), var(--color-primary-light));
-  box-shadow: 0 6px 20px rgba(0, 52, 102, 0.35);
+  background: linear-gradient(135deg, #f05a2e, #E54E21);
+  box-shadow: 0 6px 20px rgba(229, 78, 33, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.22);
   transform: translateY(-2px);
 }
 
 .btn--primary:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 52, 102, 0.2);
+  box-shadow: 0 2px 8px rgba(229, 78, 33, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .btn--secondary {
-  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-container));
-  color: var(--color-primary);
-  box-shadow: 0 4px 14px rgba(252, 153, 16, 0.3);
+  background: linear-gradient(135deg, #E54E21, #c94218);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(229, 78, 33, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .btn--secondary:hover {
-  background: linear-gradient(135deg, var(--color-secondary-container), #f0c04a);
-  box-shadow: 0 6px 20px rgba(252, 153, 16, 0.4);
+  background: linear-gradient(135deg, #f05a2e, #E54E21);
+  box-shadow: 0 6px 20px rgba(229, 78, 33, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.22);
   transform: translateY(-2px);
 }
 
@@ -513,15 +513,15 @@ p {
 
 /* ── Dark Mode: Buttons ────────────────────────────── */
 [data-theme="dark"] .btn--primary {
-  box-shadow: 0 4px 14px rgba(74, 158, 255, 0.25);
+  box-shadow: 0 4px 14px rgba(229, 78, 33, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 [data-theme="dark"] .btn--primary:hover {
-  box-shadow: 0 6px 20px rgba(74, 158, 255, 0.35);
+  box-shadow: 0 6px 20px rgba(229, 78, 33, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="dark"] .btn--secondary {
-  box-shadow: 0 4px 14px rgba(255, 179, 64, 0.25);
+  box-shadow: 0 4px 14px rgba(229, 78, 33, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 [data-theme="dark"] .btn--ghost {

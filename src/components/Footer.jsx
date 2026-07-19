@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <div className="footer__logo">
-              <span className="footer__logo-mark">SM</span>
+              <img src="/logo.png" alt="SupraMax Energy" className="footer__logo-img" />
               <div>
                 <span className="footer__company-name">SupraMax Energy</span>
                 <span className="footer__tagline">{t('tagline')}</span>

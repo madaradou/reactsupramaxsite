@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import ThemeToggle from './ThemeToggle'
-import LanguageSelector from './LanguageSelector'
+import SettingsPopup from './SettingsPopup'
 import { useLanguage } from '../i18n/LanguageContext'
 import './Header.css'
 
@@ -38,7 +37,7 @@ export default function Header() {
     <header className={`header ${scrolled ? 'header--scrolled' : ''}`}>
       <div className="header__inner container--wide">
         <Link to="/" className="header__brand" aria-label="SupraMax Energy — Accueil">
-          <span className="header__logo-mark">SM</span>
+          <img src="/logo.png" alt="SupraMax Energy" className="header__logo-img" />
           <span className="header__logo-text">
             <span className="header__company-name">SupraMax Energy</span>
             <span className="header__tagline">{t('tagline')}</span>
@@ -61,8 +60,7 @@ export default function Header() {
           {t('cta_quote')}
         </Link>
 
-        <ThemeToggle />
-        <LanguageSelector />
+        <SettingsPopup />
 
         <button
           className="header__burger"
@@ -91,10 +89,7 @@ export default function Header() {
             {t('cta_quote')}
           </Link>
           <div className="mobile-nav__theme">
-            <ThemeToggle />
-            <span className="mobile-nav__theme-label">
-              {document.documentElement.getAttribute('data-theme') === 'dark' ? 'Mode clair' : 'Mode sombre'}
-            </span>
+            <SettingsPopup />
           </div>
         </nav>
       </div>
