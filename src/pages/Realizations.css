@@ -153,4 +153,22 @@
     flex-direction: column;
     gap: var(--space-xs);
   }
+
+  .project-card__kpis {
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card__visual {
+    height: 180px;
+  }
+
+  .project-card__body {
+    padding: var(--space-lg);
+  }
+
+  .project-card__capacity {
+    font-size: var(--text-h2);
+  }
 }

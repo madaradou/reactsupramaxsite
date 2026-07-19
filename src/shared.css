@@ -223,6 +223,27 @@
     padding-bottom: var(--space-2xl);
   }
 
+  .page-hero__title {
+    font-size: var(--text-h1);
+  }
+
+  .page-hero__strengths {
+    gap: var(--space-sm);
+  }
+
+  .page-hero__strength {
+    padding: 6px 12px;
+    font-size: var(--text-xs);
+  }
+
+  .quote-card {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .quote-card blockquote {
+    font-size: var(--text-h4);
+  }
+
   .stats-inline__inner {
     flex-direction: column;
     gap: var(--space-xl);
@@ -241,5 +262,29 @@
   .what-changes__grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero {
+    padding-top: calc(var(--space-3xl) + 60px);
+    padding-bottom: var(--space-lg);
+  }
+
+  .page-hero__title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .page-hero__subtitle {
+    font-size: var(--text-body);
+  }
+
+  .quote-card {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .cta-section__inner {
+    padding: var(--space-xl) var(--space-lg);
+    border-radius: var(--radius-xl);
   }
 }

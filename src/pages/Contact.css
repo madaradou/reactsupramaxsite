@@ -248,4 +248,18 @@
   .form-row {
     grid-template-columns: 1fr;
   }
+
+  .contact-success__inner {
+    padding-top: var(--space-2xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-info-card {
+    padding: var(--space-md);
+  }
+
+  .faq-card {
+    padding: var(--space-md);
+  }
 }
