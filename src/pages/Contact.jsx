@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import './Contact.css'
@@ -42,59 +42,38 @@ export default function Contact() {
     return errs
   }
 
-  const buildWhatsAppUrl = () => {
-    const serviceLabel = SERVICE_OPTIONS.find(s => s.value === form.service)?.label || form.service
-    const text = [
-      `Nouvelle demande de contact`,
-      ``,
-      `Nom: ${form.name}`,
-      `Tél: ${form.phone}`,
-      `Email: ${form.email}`,
-      `Ville: ${form.city || '-'}`,
-      `Service: ${serviceLabel}`,
-      ``,
-      `Message:`,
-      form.message,
-    ].join('%0A')
+  const whatsappUrl = useMemo(() => {
+    if (!submitted) return '#'
+    const svc = SERVICE_OPTIONS.find(s => s.value === form.service)?.label || form.service
+    const text = encodeURIComponent(
+      `Nouvelle demande de contact\n\nNom: ${form.name}\nTél: ${form.phone}\nEmail: ${form.email}\nVille: ${form.city || '-'}\nService: ${svc}\n\nMessage:\n${form.message}`
+    )
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`
-  }
+  }, [submitted, form])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     const errs = validate()
     setErrors(errs)
     if (Object.keys(errs).length > 0) return
 
-    setSending(true)
-    setSendError('')
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: `Nouvelle demande - ${form.name}`,
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        city: form.city,
+        service: SERVICE_OPTIONS.find(s => s.value === form.service)?.label || form.service,
+        message: form.message,
+      }),
+    }).catch(() => {})
 
-    try {
-      await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: `Nouvelle demande - ${form.name}`,
-          name: form.name,
-          phone: form.phone,
-          email: form.email,
-          city: form.city,
-          service: SERVICE_OPTIONS.find(s => s.value === form.service)?.label || form.service,
-          message: form.message,
-        }),
-      })
-    } catch {
-      // Email failed but we still proceed
-    }
-
-    setSending(false)
     setSubmitted(true)
-
-    try {
-      window.open(buildWhatsAppUrl(), '_blank', 'noopener,noreferrer')
-    } catch {
-      // Popup blocked — WhatsApp link still available on success page
-    }
+    window.scrollTo(0, 0)
   }
 
   const handleChange = (field) => (e) => {
@@ -112,19 +91,17 @@ export default function Contact() {
   if (submitted) {
     return (
       <section className="section contact-success">
-        <div className="container" data-reveal>
+        <div className="container">
           <div className="contact-success__inner">
             <span className="material-symbols-outlined contact-success__icon">check_circle</span>
             <h2>{t('contact_success_title')}</h2>
-            <p>
-              {t('contact_success_desc')}
-            </p>
-            <div style={{ display: 'flex', gap: 'var(--space-md)', marginTop: 'var(--space-xl)', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <p>{t('contact_success_desc')}</p>
+            <div className="contact-success__actions">
               <Link to="/" className="btn btn--primary">
                 {t('contact_success_btn')}
               </Link>
               <a
-                href={buildWhatsAppUrl()}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn--whatsapp"
