@@ -227,3 +227,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .vision-card {
+    padding: var(--space-lg);
+  }
+
+  .vision-card__number {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .principle-card,
+  .value-card {
+    padding: var(--space-lg);
+  }
+}

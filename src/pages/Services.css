@@ -212,3 +212,19 @@
     gap: var(--space-md);
   }
 }
+
+@media (max-width: 480px) {
+  .service-detail-card__img-wrap {
+    height: 140px;
+  }
+
+  .service-detail-card__body {
+    padding: var(--space-lg);
+  }
+
+  .timeline__num {
+    width: 40px;
+    height: 40px;
+    font-size: var(--text-xs);
+  }
+}
