@@ -256,6 +256,14 @@
   margin-bottom: var(--space-md);
 }
 
+.contact-success__actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-xl);
+  flex-wrap: wrap;
+}
+
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 900px) {
   .contact-grid {
