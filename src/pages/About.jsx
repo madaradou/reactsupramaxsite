@@ -27,7 +27,7 @@ export default function About() {
           <div className="vision-card" data-reveal>
             <div className="vision-card__items" data-stagger>
               <div className="vision-card__item">
-                <span className="vision-card__number">15+</span>
+                <span className="vision-card__number">5+</span>
                 <span className="vision-card__label">{t('about_exp')}</span>
               </div>
               <div className="vision-card__item">

@@ -12,7 +12,7 @@ const translations = {
     // Home - Hero
     home_eyebrow: 'Excellence énergétique',
     home_hero_title: 'Solutions photovoltaïques premium pour le futur',
-    home_hero_subtitle: 'SupraMax Energy conçoit et déploie des installations solaires d\'exception pour le résidentiel, le tertiaire et l\'industriel en Tunisie.',
+    home_hero_subtitle: 'SupraMax Energy conçoit et déploie des installations solaires d\'exception pour le résidentiel, le commercial et l\'industriel en Tunisie.',
     home_hero_cta: 'Demander un devis',
     home_hero_cta2: 'Découvrir nos services',
 
@@ -67,13 +67,13 @@ const translations = {
     services_section_eyebrow: 'Nos services',
     services_section_title: 'Une offre complète et intégrée',
     services_section_desc: 'Chaque service est conçu pour s\'intégrer dans un écosystème cohérent, maximisant la valeur de votre investissement.',
-    service1_title: 'Audit & Conception',
+    service1_title: 'Étude & Conception',
     service1_desc: 'Étude technique complète, prévision de rendement et dimensionnement optimal de votre installation.',
     service1_d1: 'Étude de faisabilité',
     service1_d2: 'Prévision de rendement',
     service1_d3: 'Dimensionnement optimal',
     service2_title: 'Installation photovoltaïque',
-    service2_desc: 'Installation résidentielle, ombrières et ground-mounted avec une exécution premium.',
+    service2_desc: 'Pose de panneaux solaires sur toitures, ombrières et sol — clé en main, aux normes les plus strictes.',
     service2_d1: 'Résidentiel premium',
     service2_d2: 'Ombrières photovoltaïques',
     service2_d3: 'Ground-mounted',
@@ -134,7 +134,7 @@ const translations = {
     about_position_eyebrow: 'Notre positionnement',
     about_position_title: 'Entre rigueur d\'ingénierie et élégance d\'exécution',
     about_position_desc: 'Nous occupons un espace unique : l\'intersection de la précision technique et du souci du détail esthétique. Trois principes guident chacune de nos décisions.',
-    principle1_title: 'Décisions fondées',
+    principle1_title: 'Équipe technique qualifiée',
     principle1_desc: 'Chaque recommandation est appuyée par des données techniques, des simulations de rendement et une analyse rigoureuse de votre site.',
     principle2_title: 'Relation de confiance',
     principle2_desc: 'Nous construisons des partenariats durables, pas des transactions. Transparence totale sur les choix techniques et financiers.',
@@ -252,8 +252,16 @@ const translations = {
     opt_mobility: 'Mobilité & recharge',
     opt_optimization: 'Optimisation énergétique',
 
+    // Building type
+    contact_building: 'Type de bâtiment',
+    contact_building_select: 'Sélectionnez un type',
+    opt_home: 'Maison',
+    opt_office: 'Bureau',
+    opt_company: 'Entreprise',
+    opt_factory: 'Usine',
+
     // Footer
-    footer_desc: 'Solutions photovoltaïques premium pour le résidentiel, le tertiaire et l\'industriel. Excellence énergétique au service de la Tunisie.',
+    footer_desc: 'Solutions photovoltaïques premium pour le résidentiel, le commercial et l\'industriel. Excellence énergétique au service de la Tunisie.',
     footer_nav: 'Navigation',
     footer_services: 'Services',
     footer_service_audit: 'Audit & conception',
@@ -334,13 +342,13 @@ const translations = {
     services_section_eyebrow: 'Our services',
     services_section_title: 'A complete and integrated offering',
     services_section_desc: 'Every service is designed to integrate into a coherent ecosystem, maximizing the value of your investment.',
-    service1_title: 'Audit & Design',
+    service1_title: 'Study & Design',
     service1_desc: 'Complete technical study, yield forecasting, and optimal sizing of your installation.',
     service1_d1: 'Feasibility study',
     service1_d2: 'Yield forecasting',
     service1_d3: 'Optimal sizing',
     service2_title: 'Photovoltaic installation',
-    service2_desc: 'Residential, carport, and ground-mounted installation with premium execution.',
+    service2_desc: 'Turnkey solar panel installation on rooftops, carports, and ground — built to the highest standards.',
     service2_d1: 'Premium residential',
     service2_d2: 'Solar carports',
     service2_d3: 'Ground-mounted',
@@ -401,7 +409,7 @@ const translations = {
     about_position_eyebrow: 'Our positioning',
     about_position_title: 'Between engineering rigor and execution elegance',
     about_position_desc: 'We occupy a unique space: the intersection of technical precision and aesthetic attention to detail. Three principles guide every decision we make.',
-    principle1_title: 'Data-driven decisions',
+    principle1_title: 'Qualified technical team',
     principle1_desc: 'Every recommendation is backed by technical data, yield simulations, and rigorous site analysis.',
     principle2_title: 'Trust-based relationships',
     principle2_desc: 'We build lasting partnerships, not transactions. Full transparency on technical and financial choices.',
@@ -519,6 +527,14 @@ const translations = {
     opt_mobility: 'Mobility & charging',
     opt_optimization: 'Energy optimization',
 
+    // Building type
+    contact_building: 'Building type',
+    contact_building_select: 'Select a type',
+    opt_home: 'Home',
+    opt_office: 'Office',
+    opt_company: 'Company',
+    opt_factory: 'Factory',
+
     // Footer
     footer_desc: 'Premium photovoltaic solutions for residential, commercial, and industrial clients. Energy excellence in service of Tunisia.',
     footer_nav: 'Navigation',
@@ -546,7 +562,7 @@ const translations = {
     // Home - Hero
     home_eyebrow: 'تميّز طاقي',
     home_hero_title: 'حلول photovoltaïque متميزة للمستقبل',
-    home_hero_subtitle: 'تصميم SupraMax Energy ونشر تركيبات شمسية استثنائية للقطاع السكني وال thươngzi والصناعي في تونس.',
+    home_hero_subtitle: 'تصميم SupraMax Energy ونشر تركيبات شمسية استثنائية للقطاع السكني والتجاري والصناعي في تونس.',
     home_hero_cta: 'طلب عرض سعر',
     home_hero_cta2: 'اكتشف خدماتنا',
 
@@ -607,7 +623,7 @@ const translations = {
     service1_d2: 'توقع العائد',
     service1_d3: 'تحديد الحجم الأمثل',
     service2_title: 'تركيب ضوئي',
-    service2_desc: 'تركيب سكني ومواقف سيارات وأرضي بأداء متميز.',
+    service2_desc: 'تركيب الألواح الشمسية على الأسطح والمواقف والأرض — متكامل وبأعلى المعايير.',
     service2_d1: 'سكنى متميز',
     service2_d2: 'مظلات شمسية',
     service2_d3: 'تركيب أرضي',
@@ -668,7 +684,7 @@ const translations = {
     about_position_eyebrow: 'موضعنا',
     about_position_title: 'بين صرامة الهندسة وأناقة التنفيذ',
     about_position_desc: 'نشغل مساحة فريدة: تقاطع الدقة التقنية والاهتمام بالجمال. ثلاثة مبادئ توجه كل قرار نتخذه.',
-    principle1_title: 'قرارات مبنية على البيانات',
+    principle1_title: 'فريق تقني مؤهل',
     principle1_desc: 'كل توصية مدعومة ببيانات تقنية ومحاكاة أداء وتحليل دقيق للموقع.',
     principle2_title: 'علاقات مبنية على الثقة',
     principle2_desc: 'نبني شراكات دائمة، لا صفقات. شفافية كاملة على الخيارات التقنية والمالية.',
@@ -786,8 +802,16 @@ const translations = {
     opt_mobility: 'تنقل وشحن',
     opt_optimization: 'تحسين طاقي',
 
+    // Building type
+    contact_building: 'نوع المبنى',
+    contact_building_select: 'اختر نوعاً',
+    opt_home: 'منزل',
+    opt_office: 'مكتب',
+    opt_company: 'شركة',
+    opt_factory: 'مصنع',
+
     // Footer
-    footer_desc: 'حلول photovoltaïque متميزة للقطاع السكني وال thươngzi والصناعي. تميّز طاقي في خدمة تونس.',
+    footer_desc: 'حلول photovoltaïque متميزة للقطاع السكني والتجاري والصناعي. تميّز طاقي في خدمة تونس.',
     footer_nav: 'التنقل',
     footer_services: 'الخدمات',
     footer_service_audit: 'تدقيق وتصميم',

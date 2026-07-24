@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
+import MapPicker from '../components/MapPicker'
 import './Contact.css'
 
 const WEB3FORMS_KEY = 'e35c576c-2a88-4fb0-b812-4f0c8777e3b2'
@@ -14,15 +15,15 @@ export default function Contact() {
     { value: 'install', label: t('opt_install') },
     { value: 'storage', label: t('opt_storage') },
     { value: 'monitoring', label: t('opt_monitoring') },
-    { value: 'mobility', label: t('opt_mobility') },
-    { value: 'optimization', label: t('opt_optimization') },
   ]
 
   const [form, setForm] = useState({
     name: '',
     phone: '',
     email: '',
+    building: '',
     city: '',
+    reference: '',
     service: '',
     message: '',
   })
@@ -30,6 +31,8 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
   const [sendError, setSendError] = useState('')
+  const [showMap, setShowMap] = useState(false)
+  const [location, setLocation] = useState(null)
 
   const validate = () => {
     const errs = {}
@@ -38,7 +41,7 @@ export default function Contact() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = t('err_email_invalid')
     if (!form.phone.trim()) errs.phone = t('err_phone')
     if (!form.service) errs.service = t('err_service')
-    if (!form.message.trim()) errs.message = t('err_message')
+    if (form.reference.trim() && !/^\d{9}$/.test(form.reference.trim())) errs.reference = 'La référence doit contenir exactement 9 chiffres'
     return errs
   }
 
@@ -66,7 +69,11 @@ export default function Contact() {
         name: form.name,
         phone: form.phone,
         email: form.email,
+        building: form.building || '-',
         city: form.city,
+        reference: form.reference || '-',
+        latitude: location?.latitude || '',
+        longitude: location?.longitude || '',
         service: SERVICE_OPTIONS.find(s => s.value === form.service)?.label || form.service,
         message: form.message,
       }),
@@ -78,6 +85,7 @@ export default function Contact() {
 
   const handleChange = (field) => (e) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }))
+    if (field === 'city') setLocation(null)
     if (errors[field]) {
       setErrors((prev) => {
         const next = { ...prev }
@@ -201,7 +209,24 @@ export default function Contact() {
                     {errors.email && <span className="form-error">{errors.email}</span>}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="city">{t('contact_city')}</label>
+                    <label htmlFor="building">{t('contact_building')}</label>
+                    <select
+                      id="building"
+                      value={form.building}
+                      onChange={handleChange('building')}
+                    >
+                      <option value="">{t('contact_building_select')}</option>
+                      <option value="home">{t('opt_home')}</option>
+                      <option value="office">{t('opt_office')}</option>
+                      <option value="company">{t('opt_company')}</option>
+                      <option value="factory">{t('opt_factory')}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="city">{t('contact_city')}</label>
+                  <div className="city-input-row">
                     <input
                       id="city"
                       type="text"
@@ -209,7 +234,47 @@ export default function Contact() {
                       onChange={handleChange('city')}
                       placeholder={t('contact_city_placeholder')}
                     />
+                    <button
+                      type="button"
+                      className="city-map-btn"
+                      onClick={() => setShowMap(true)}
+                      title="Choisir sur la carte"
+                    >
+                      <span className="material-symbols-outlined">map</span>
+                    </button>
                   </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="reference">
+                    Référence (optionnel)
+                    <a
+                      href="/guide-reference.pdf"
+                      download
+                      className="ref-help-btn"
+                      title="Télécharger le guide"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <span className="material-symbols-outlined">help_outline</span>
+                    </a>
+                  </label>
+                  <input
+                    id="reference"
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={9}
+                    value={form.reference}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, '').slice(0, 9)
+                      setForm(prev => ({ ...prev, reference: val }))
+                      if (errors.reference) {
+                        setErrors(prev => { const n = { ...prev }; delete n.reference; return n })
+                      }
+                    }}
+                    placeholder="9 chiffres"
+                    className={errors.reference ? 'input--error' : ''}
+                  />
+                  {errors.reference && <span className="form-error">{errors.reference}</span>}
                 </div>
 
                 <div className="form-group">
@@ -229,16 +294,17 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">{t('contact_message')}</label>
+                  <label htmlFor="message">
+                    {t('contact_message')}
+                    <span className="label-optional">(optionnel)</span>
+                  </label>
                   <textarea
                     id="message"
                     value={form.message}
                     onChange={handleChange('message')}
                     placeholder={t('contact_message_placeholder')}
                     rows={5}
-                    className={errors.message ? 'input--error' : ''}
                   />
-                  {errors.message && <span className="form-error">{errors.message}</span>}
                 </div>
 
                 {sendError && <span className="form-error" style={{ fontSize: 'var(--text-small)' }}>{sendError}</span>}
@@ -321,6 +387,30 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {showMap && (
+        <div className="map-modal" onClick={() => setShowMap(false)}>
+          <div className="map-modal__content" onClick={(e) => e.stopPropagation()}>
+            <div className="map-modal__header">
+              <h3>
+                <span className="material-symbols-outlined">map</span>
+                Choisir l'adresse
+              </h3>
+              <button className="map-modal__close" onClick={() => setShowMap(false)}>
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            <MapPicker
+              initial={location}
+              onSelect={(loc) => {
+                setForm(prev => ({ ...prev, city: loc.address }))
+                setLocation(loc)
+                setShowMap(false)
+              }}
+            />
+          </div>
+        </div>
+      )}
     </>
   )
 }

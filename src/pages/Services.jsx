@@ -38,22 +38,6 @@ export default function Services() {
       img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
       imgAlt: 'Tableau de bord de supervision énergétique',
     },
-    {
-      icon: 'ev_station',
-      title: t('service5_title'),
-      desc: t('service5_desc'),
-      details: [t('service5_d1'), t('service5_d2'), t('service5_d3')],
-      img: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80',
-      imgAlt: 'Borne de recharge électrique pour véhicule',
-    },
-    {
-      icon: 'tune',
-      title: t('service6_title'),
-      desc: t('service6_desc'),
-      details: [t('service6_d1'), t('service6_d2'), t('service6_d3')],
-      img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
-      imgAlt: 'Analyse de données énergétiques sur écran',
-    },
   ]
 
   const STEPS = [
@@ -165,7 +149,7 @@ export default function Services() {
         <div className="container" data-reveal>
           <div className="stats-inline__inner">
             <div className="stats-inline__item">
-              <span className="stats-inline__number">99.8%</span>
+              <span className="stats-inline__number">100%</span>
               <span className="stats-inline__label">{t('stat_availability')}</span>
             </div>
             <div className="stats-inline__divider" />
