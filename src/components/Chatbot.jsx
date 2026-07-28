@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import './Chatbot.css'
 
-const API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY || ''
-const API_URL = 'https://openrouter.ai/api/v1/chat/completions'
+// Chat requests are forwarded to the server proxy at /api/chatbot
+const API_URL = '/api/chatbot'
 
 const SYSTEM_PROMPT = `Tu es Chamouss, l'assistant virtuel de SupraMax Energy, une entreprise tunisienne spécialisée en ingénierie photovoltaïque premium.
 
@@ -98,13 +98,7 @@ export default function Chatbot() {
     const msg = (text || input).trim()
     if (!msg || loading) return
 
-    if (!API_KEY) {
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: "L'assistant n'est pas configuré côté API. Ajoutez VITE_OPENROUTER_API_KEY dans votre fichier d'environnement, puis réessayez." },
-      ])
-      return
-    }
+    // Client-side should not contain the API key. The server proxy will attach it.
 
     const userMsg = { role: 'user', content: msg }
     setMessages((prev) => [...prev, userMsg])
@@ -117,9 +111,6 @@ export default function Chatbot() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${API_KEY}`,
-          'HTTP-Referer': window.location.origin,
-          'X-Title': 'SupraMax Energy',
         },
         body: JSON.stringify({
           model: 'google/gemma-4-26b-a4b-it:free',

@@ -5,7 +5,6 @@ import MapPicker from '../components/MapPicker'
 import ReCAPTCHA from 'react-google-recaptcha'
 import './Contact.css'
 
-const WEB3FORMS_KEY = 'e35c576c-2a88-4fb0-b812-4f0c8777e3b2'
 const WHATSAPP_NUMBER = '21692660716'
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
 
@@ -84,31 +83,48 @@ export default function Contact() {
       return
     }
 
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
-        subject: `Nouvelle demande - ${form.name}`,
-        name: form.name,
-        phone: form.phone,
-        email: form.email,
-        building: form.building || '-',
-        city: form.city,
-        reference: form.reference || '-',
-        latitude: location?.latitude || '',
-        longitude: location?.longitude || '',
-        google_maps_url: googleMapsUrl,
-        'g-recaptcha-response': captchaToken,
-        service: SERVICE_OPTIONS.find(s => s.value === form.service)?.label || form.service,
-        message: form.message,
-      }),
-    }).catch(() => {})
+    try {
+      setSending(true)
+      const payload = {
+        token: captchaToken,
+        form: {
+          subject: `Nouvelle demande - ${form.name}`,
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          building: form.building || '-',
+          city: form.city,
+          reference: form.reference || '-',
+          latitude: location?.latitude || '',
+          longitude: location?.longitude || '',
+          google_maps_url: googleMapsUrl,
+          service: SERVICE_OPTIONS.find(s => s.value === form.service)?.label || form.service,
+          message: form.message,
+        },
+      }
 
-    setSubmitted(true)
-    window.scrollTo(0, 0)
-    captchaRef.current?.reset()
-    setCaptchaToken('')
+      const resp = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}))
+        setSendError(err.error || 'Erreur lors de l\'envoi. Réessayez plus tard.')
+        setSending(false)
+        return
+      }
+
+      setSubmitted(true)
+      window.scrollTo(0, 0)
+      captchaRef.current?.reset()
+      setCaptchaToken('')
+    } catch (err) {
+      setSendError('Erreur réseau. Réessayez plus tard.')
+    } finally {
+      setSending(false)
+    }
   }
 
   const handleChange = (field) => (e) => {
