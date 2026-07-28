@@ -128,12 +128,12 @@ export default function Realizations() {
         <div className="container" data-reveal>
           <div className="stats-inline__inner">
             <div className="stats-inline__item">
-              <span className="stats-inline__number">350+</span>
+              <span className="stats-inline__number">150+</span>
               <span className="stats-inline__label">{t('real_stat_projects')}</span>
             </div>
             <div className="stats-inline__divider" />
             <div className="stats-inline__item">
-              <span className="stats-inline__number">99.9%</span>
+              <span className="stats-inline__number">100%</span>
               <span className="stats-inline__label">{t('real_stat_uptime')}</span>
             </div>
             <div className="stats-inline__divider" />

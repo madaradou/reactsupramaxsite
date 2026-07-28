@@ -9,6 +9,7 @@ import Services from './pages/Services'
 import About from './pages/About'
 import Realizations from './pages/Realizations'
 import Contact from './pages/Contact'
+import Chatbot from './components/Chatbot'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -35,6 +36,7 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
+        <Chatbot />
       </LanguageProvider>
     </BrowserRouter>
   )

@@ -42,7 +42,7 @@ export default function Home() {
       <section className="stats-bar">
         <div className="container--wide" data-stagger>
           <div className="stats-bar__item">
-            <span className="stats-bar__number">10 MW</span>
+            <span className="stats-bar__number">1000 KWC</span>
             <span className="stats-bar__label">{t('stat_installed')}</span>
           </div>
           <div className="stats-bar__item">
