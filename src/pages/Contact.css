@@ -132,6 +132,14 @@
   align-self: flex-start;
 }
 
+.contact-captcha {
+  min-height: 78px;
+}
+
+.contact-captcha > div {
+  margin: 0 auto;
+}
+
 /* ── Sidebar ───────────────────────────────────────── */
 .contact-sidebar {
   display: flex;
@@ -177,6 +185,20 @@
   font-size: var(--text-small);
   color: var(--color-text-secondary);
   margin-top: 2px;
+}
+
+.contact-info-link {
+  font-size: var(--text-small);
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-top: 2px;
+  display: inline-block;
+  transition: opacity var(--duration-fast);
+}
+
+.contact-info-link:hover {
+  opacity: 0.8;
 }
 
 /* ── FAQ Cards ─────────────────────────────────────── */
