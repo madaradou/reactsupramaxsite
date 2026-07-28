@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -16,10 +16,10 @@ const markerIcon = new L.DivIcon({
 
 function RecenterMap({ center, zoom }) {
   const map = useMap()
-  const done = useRef(false)
-  if (!done.current && center) {
+  const prev = useRef(center)
+  if (center && (center[0] !== prev.current?.[0] || center[1] !== prev.current?.[1])) {
     map.setView(center, zoom || 15)
-    done.current = true
+    prev.current = center
   }
   return null
 }
@@ -105,6 +105,33 @@ export default function MapPicker({ initial, onSelect }) {
     setSearchQuery('')
   }
 
+  const [locating, setLocating] = useState(false)
+  const [geoError, setGeoError] = useState('')
+  const geoRan = useRef(false)
+
+  useEffect(() => {
+    if (geoRan.current) return
+    if (initial?.latitude && initial?.longitude) return
+    if (!navigator.geolocation) return
+    geoRan.current = true
+    setLocating(true)
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords
+        setPosition([latitude, longitude])
+        reverseGeocode(latitude, longitude)
+        setLocating(false)
+      },
+      (err) => {
+        setLocating(false)
+        if (err.code === 1) {
+          setGeoError('Localisation refusée. Veuillez saisir votre adresse manuellement.')
+        }
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    )
+  }, [initial, reverseGeocode])
+
   const handleConfirm = () => {
     onSelect?.({ address, latitude: position[0], longitude: position[1] })
   }
@@ -182,6 +209,24 @@ export default function MapPicker({ initial, onSelect }) {
           />
         </MapContainer>
       </div>
+
+      {/* ── Geolocation Status ──────────────── */}
+      {locating && (
+        <div className="mp__info mp__info--geo">
+          <div className="mp__info-row">
+            <span className="material-symbols-outlined mp__info-icon mp__spin">my_location</span>
+            <span className="mp__info-loading">Détection de votre position...</span>
+          </div>
+        </div>
+      )}
+      {geoError && (
+        <div className="mp__info mp__info--geo mp__info--geo-error">
+          <div className="mp__info-row">
+            <span className="material-symbols-outlined mp__info-icon">location_off</span>
+            <span className="mp__info-hint">{geoError}</span>
+          </div>
+        </div>
+      )}
 
       {/* ── Selected Address ─────────────────── */}
       <div className="mp__info">

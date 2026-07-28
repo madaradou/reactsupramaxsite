@@ -194,6 +194,43 @@
   background: var(--color-surface-1);
 }
 
+.mp__info--geo {
+  background: var(--color-primary-container);
+  color: #fff;
+}
+
+.mp__info--geo .mp__info-icon {
+  color: #fff;
+}
+
+.mp__info--geo .mp__info-loading {
+  color: #fff;
+}
+
+.mp__info--geo-error {
+  background: #fff3e0;
+}
+
+[data-theme="dark"] .mp__info--geo-error {
+  background: #3e2723;
+}
+
+.mp__info--geo-error .mp__info-icon {
+  color: #e65100;
+}
+
+[data-theme="dark"] .mp__info--geo-error .mp__info-icon {
+  color: #ffb74d;
+}
+
+.mp__info--geo-error .mp__info-hint {
+  color: #bf360c;
+}
+
+[data-theme="dark"] .mp__info--geo-error .mp__info-hint {
+  color: #ffcc80;
+}
+
 .mp__info-row {
   display: flex;
   align-items: flex-start;
@@ -374,6 +411,50 @@
 [data-theme="dark"] .mp .leaflet-control-attribution {
   background: rgba(30, 30, 30, 0.75) !important;
   color: var(--color-text-tertiary) !important;
+}
+
+/* ── Geolocation Status ──────────────────────────── */
+.mp__info--geo {
+  background: var(--color-primary) !important;
+  color: #fff;
+}
+
+.mp__info--geo .mp__info-icon,
+.mp__info--geo .mp__info-loading {
+  color: #fff;
+}
+
+.mp__info--geo .mp__info-loading::before {
+  border-color: #fff;
+  border-top-color: transparent;
+}
+
+.mp__info--geo-error {
+  background: #fff3e0 !important;
+}
+
+.mp__info--geo-error .mp__info-icon {
+  color: #e65100 !important;
+}
+
+.mp__info--geo-error .mp__info-hint {
+  color: #bf360c !important;
+}
+
+[data-theme="dark"] .mp__info--geo {
+  background: var(--color-primary-container) !important;
+}
+
+[data-theme="dark"] .mp__info--geo-error {
+  background: #3e2723 !important;
+}
+
+[data-theme="dark"] .mp__info--geo-error .mp__info-icon {
+  color: #ffab91 !important;
+}
+
+[data-theme="dark"] .mp__info--geo-error .mp__info-hint {
+  color: #ffccbc !important;
 }
 
 /* ── Animations ─────────────────────────────────── */

@@ -5,7 +5,7 @@ import MapPicker from '../components/MapPicker'
 import './Contact.css'
 
 const WEB3FORMS_KEY = 'e35c576c-2a88-4fb0-b812-4f0c8777e3b2'
-const WHATSAPP_NUMBER = '21696453635'
+const WHATSAPP_NUMBER = '21692660716'
 
 export default function Contact() {
   const { t } = useLanguage()
