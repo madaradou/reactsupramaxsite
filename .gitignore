@@ -4,4 +4,3 @@ dist
 .env
 .env.local
 .vite
-.env.local.bak
