@@ -72,7 +72,7 @@ export default function Contact() {
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`
   }, [submitted, form, location, googleMapsUrl])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const errs = validate()
     setErrors(errs)
