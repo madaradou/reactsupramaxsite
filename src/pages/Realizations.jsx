@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
+import { useEffect, useState } from 'react'
 import './Realizations.css'
+import RealisationsGallery from '../components/RealisationsGallery'
+import ProjectCarousel from '../components/ProjectCarousel'
+import ErrorBoundary from '../components/ErrorBoundary'
 
 export default function Realizations() {
   const { t } = useLanguage()
@@ -52,6 +56,45 @@ export default function Realizations() {
     },
   ]
 
+  const [externalProjects, setExternalProjects] = useState([])
+
+  useEffect(() => {
+    fetch('/realisations/links.json')
+      .then(res => res.ok ? res.json() : [])
+      .then(urls => {
+          if (!Array.isArray(urls)) return
+          let ext = []
+          if (urls.length === 1) {
+            ext = urls.map((u, i) => ({
+              title: `Menzah 8`,
+              location: 'Menzah 8',
+              capacity: '—',
+              type: t('real_residential'),
+              kpi1: { label: 'Économie', value: '—' },
+              kpi2: { label: 'Interruptions', value: '—' },
+              desc: t('real_project1_desc'),
+              img: u,
+              imgAlt: `Réalisation ${i+1}`,
+            }))
+          } else if (urls.length > 1) {
+            // group into a single project with multiple images
+            ext = [{
+              title: `Menzah 8`,
+              location: 'Menzah 8',
+              capacity: '—',
+              type: t('real_residential'),
+              kpi1: { label: 'Économie', value: '—' },
+              kpi2: { label: 'Interruptions', value: '—' },
+              desc: t('real_project1_desc'),
+              img: urls,
+              imgAlt: `Menzah 8 gallery`,
+            }]
+          }
+          setExternalProjects(ext)
+      })
+      .catch(() => {})
+  }, [t])
+
   return (
     <>
       {/* ── Hero ─────────────────────────────────────── */}
@@ -81,18 +124,24 @@ export default function Realizations() {
       </section>
 
       {/* ── Portfolio Grid ───────────────────────────── */}
+
       <section className="section section--lg">
         <div className="container">
+          <ErrorBoundary>
           <div className="portfolio-grid" data-stagger>
-            {PROJECTS.map((project, i) => (
+            {[...PROJECTS, ...externalProjects].map((project, i) => (
               <div className="project-card" key={i}>
                 <div className="project-card__visual">
-                  <img
-                    src={project.img}
-                    alt={project.imgAlt}
-                    className="project-card__img"
-                    loading="lazy"
-                  />
+                  {Array.isArray(project.img) ? (
+                    <ProjectCarousel images={project.img} alt={project.imgAlt} className="project-card__img" />
+                  ) : (
+                    <img
+                      src={project.img}
+                      alt={project.imgAlt}
+                      className="project-card__img"
+                      loading="lazy"
+                    />
+                  )}
                   <div className="project-card__overlay" />
                   <span className="project-card__capacity">{project.capacity}</span>
                   <span className="project-card__type">{project.type}</span>
@@ -120,6 +169,7 @@ export default function Realizations() {
               </div>
             ))}
           </div>
+          </ErrorBoundary>
         </div>
       </section>
 
